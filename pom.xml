@@ -8,11 +8,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bezkoder</groupId>
-	<artifactId>spring-boot-login-example</artifactId>
+	<groupId>com.quantaGenious</groupId>
+	<artifactId>quanta-genious</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-login-example</name>
-	<description>Spring Boot Login example with Spring Security, JWT and MySQL - Rest API</description>
+	<name>Quanta Genious</name>
+	<description>Quanta Genious Application</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
