@@ -1,8 +1,6 @@
 package com.quantaGenious.spring.login.models;
-
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -16,16 +14,16 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "users",
+@Table(name = "tutors",
        uniqueConstraints = {
            @UniqueConstraint(columnNames = "username"),
            @UniqueConstraint(columnNames = "email")
        })
-public class User {
+public class Tutor {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  private int userId;
+  private int tutorId;
 
   @NotBlank
   @Size(max = 20)
@@ -42,38 +40,39 @@ public class User {
   
   @CreatedDate
   @Column(name = "created_date")
-  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
   private Date createdDate;
 
   @LastModifiedDate
   @Column(name = "last_modified_date")
-  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
   private Date lastModifiedDate;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "user_roles", 
-             joinColumns = @JoinColumn(name = "user_id"),
+  @JoinTable(name = "tutor_roles", 
+             joinColumns = @JoinColumn(name = "tutor_id"),
              inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
-  
-  
-  private List<Course> courses;
 
-  public User() {
+  public Tutor() {
   }
 
-  public User(int userId,String username, String email, String password,List<Course> courses) {
-    
+  public Tutor(int tutorId,String username, String email, String password) {
 	  super();
-	 this.userId=userId;
-	this.username = username;
+	  this.tutorId=tutorId;
+    this.username = username;
     this.email = email;
     this.password = password;
-    this.courses = courses;
   }
 
 
-  public String getUsername() {
+  public int getTutorId() {
+	return tutorId;
+}
+
+public void setTutorId(int tutorId) {
+	this.tutorId = tutorId;
+}
+
+public String getUsername() {
     return username;
   }
 
@@ -120,23 +119,6 @@ public Date getLastModifiedDate() {
 public void setLastModifiedDate(Date lastModifiedDate) {
 	this.lastModifiedDate = lastModifiedDate;
 }
-
-public int getUserId() {
-	return userId;
-}
-
-public void setUserId(int userId) {
-	this.userId = userId;
-}
-
-public List<Course> getCourses() {
-	return courses;
-}
-
-public void setCourses(List<Course> courses) {
-	this.courses = courses;
-}
-
 
   
 }

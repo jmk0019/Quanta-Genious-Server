@@ -3,25 +3,37 @@ package com.quantaGenious.spring.login.payload.response;
 import java.util.List;
 
 public class UserInfoResponse {
-	private Long id;
+	private int userId;
 	private String username;
 	private String email;
 	private List<String> roles;
 
-	public UserInfoResponse(Long id, String username, String email, List<String> roles) {
-		this.id = id;
+	public UserInfoResponse(int userId, String username, String email, List<String> roles) {
+		this.userId = userId;
 		this.username = username;
 		this.email = email;
 		this.roles = roles;
 	}
 
-	public Long getId() {
-		return id;
+	
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+
+
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+
 
 	public String getEmail() {
 		return email;

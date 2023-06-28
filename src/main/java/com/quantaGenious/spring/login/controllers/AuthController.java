@@ -1,5 +1,6 @@
 package com.quantaGenious.spring.login.controllers;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quantaGenious.spring.login.models.ERole;
 import com.quantaGenious.spring.login.models.Role;
-import com.quantaGenious.spring.login.models.User;
+import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.payload.request.LoginRequest;
 import com.quantaGenious.spring.login.payload.request.SignupRequest;
 import com.quantaGenious.spring.login.payload.response.MessageResponse;
@@ -87,7 +88,9 @@ public class AuthController {
     }
 
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(),
+    Tutor user = new Tutor(signUpRequest.getUserId(),
+    		              signUpRequest.getUsername(),
+    		
                          signUpRequest.getEmail(),
                          encoder.encode(signUpRequest.getPassword()));
 
@@ -122,6 +125,8 @@ public class AuthController {
     }
 
     user.setRoles(roles);
+    user.setCreatedDate(new Date(22-06-2023));
+    user.setLastModifiedDate(signUpRequest.getLastModifiedDate());
     userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
