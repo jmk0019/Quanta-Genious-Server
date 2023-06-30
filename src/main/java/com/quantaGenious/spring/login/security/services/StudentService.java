@@ -20,7 +20,6 @@ public class StudentService {
 	@Autowired
     private UserRepo userRepo;
 
-	
 	public List<User> retrieveAllUsers() {
 		return userRepo.findAll();
 	}

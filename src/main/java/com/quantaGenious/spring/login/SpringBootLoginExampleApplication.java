@@ -15,5 +15,4 @@ public class SpringBootLoginExampleApplication {
 		SpringApplication.run(SpringBootLoginExampleApplication.class, args);
 	}
 	
-
 }

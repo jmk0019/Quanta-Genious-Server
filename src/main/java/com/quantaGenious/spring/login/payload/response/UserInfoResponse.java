@@ -3,6 +3,7 @@ package com.quantaGenious.spring.login.payload.response;
 import java.util.List;
 
 public class UserInfoResponse {
+	
 	private int userId;
 	private String username;
 	private String email;

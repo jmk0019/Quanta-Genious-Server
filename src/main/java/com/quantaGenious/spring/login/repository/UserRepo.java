@@ -11,12 +11,9 @@ import com.quantaGenious.spring.login.models.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
 	
-	 Optional<User> findByUsername(String username);
-	 
+	 Optional<User> findByUsername(String username);	 
 	 User findByUserId(int userId);
-
 	  Boolean existsByUsername(String username);
-
 	  Boolean existsByEmail(String email);
 
 }

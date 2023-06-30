@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
            @UniqueConstraint(columnNames = "email")
        })
 public class Tutor {
+	
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")

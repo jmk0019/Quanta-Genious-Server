@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  
 public class SignupRequest {
 	
+	 @NotBlank
+	 @Size(min = 1, max = 20)
 	private int userId;
 	
     @NotBlank

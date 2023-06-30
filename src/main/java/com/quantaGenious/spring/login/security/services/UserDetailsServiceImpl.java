@@ -12,6 +12,7 @@ import com.quantaGenious.spring.login.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	
   @Autowired
   UserRepository userRepository;
 

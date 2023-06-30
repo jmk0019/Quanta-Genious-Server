@@ -2,6 +2,7 @@ package com.quantaGenious.spring.login.payload.request;
 
 public class Response {
 	
+	
 	private String fileName;
     private String fileDownloadUri;
     private String fileType;

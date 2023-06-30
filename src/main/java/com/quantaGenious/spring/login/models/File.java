@@ -13,8 +13,6 @@ import javax.validation.constraints.Size;
 @Table(name = "files")
 public class File {
 	
-	  
-	
 	   @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;

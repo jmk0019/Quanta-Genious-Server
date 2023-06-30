@@ -39,7 +39,6 @@ public class DatabaseFileService {
 
     public File getFile(Long fileId) {
         return dbFileRepository.getFileById(fileId);
-            //.orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
     }
 
 }

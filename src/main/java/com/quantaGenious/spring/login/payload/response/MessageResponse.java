@@ -1,6 +1,7 @@
 package com.quantaGenious.spring.login.payload.response;
 
 public class MessageResponse {
+	
 	private String message;
 
 	public MessageResponse(String message) {

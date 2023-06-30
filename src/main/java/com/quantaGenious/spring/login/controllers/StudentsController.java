@@ -38,7 +38,6 @@ public class StudentsController {
 
 		if (course == null)
 			return null;
-
 		return course;
 	}
 

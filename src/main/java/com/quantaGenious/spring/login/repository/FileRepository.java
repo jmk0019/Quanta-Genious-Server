@@ -10,5 +10,4 @@ import com.quantaGenious.spring.login.models.File;
 public interface FileRepository extends JpaRepository<File, String> {
 	
 	File getFileById(Long id);
-
 }
