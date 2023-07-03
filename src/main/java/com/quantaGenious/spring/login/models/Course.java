@@ -30,20 +30,17 @@ public class Course {
 	
 	@Column(name = "description")
 	private String description;
-	
-	@Column(name = "lessons")
-	private List<String> lessons;
+
 	
 	public Course() {
 
 	}
 
-	public Course(int courseId, String courseName, String description, List<String> lessons) {
+	public Course(int courseId, String courseName, String description) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.description = description;
-		this.lessons = lessons;
 	}
 
 	public int getCourseId() {
@@ -68,14 +65,6 @@ public class Course {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<String> getLessons() {
-		return lessons;
-	}
-
-	public void setLessons(List<String> lessons) {
-		this.lessons = lessons;
 	}
 
 		

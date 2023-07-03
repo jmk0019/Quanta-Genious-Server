@@ -25,7 +25,6 @@ public class User {
 	
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
   private int userId;
 
   @NotBlank
@@ -51,26 +50,19 @@ public class User {
   @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
   private Date lastModifiedDate;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "user_roles", 
-             joinColumns = @JoinColumn(name = "user_id"),
-             inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<Role> roles = new HashSet<>();
   
-  
-  private List<Course> courses;
 
   public User() {
   }
 
-  public User(int userId,String username, String email, String password,List<Course> courses) {
+  public User(int userId,String username, String email, String password) {
     
 	  super();
 	 this.userId=userId;
 	this.username = username;
     this.email = email;
     this.password = password;
-    this.courses = courses;
+    
   }
 
 
@@ -98,13 +90,6 @@ public class User {
     this.password = password;
   }
 
-  public Set<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
-  }
 
 public Date getCreatedDate() {
 	return createdDate;
@@ -128,14 +113,6 @@ public int getUserId() {
 
 public void setUserId(int userId) {
 	this.userId = userId;
-}
-
-public List<Course> getCourses() {
-	return courses;
-}
-
-public void setCourses(List<Course> courses) {
-	this.courses = courses;
 }
 
 

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,11 @@ public class StudentService {
 		return userRepo.findByUserId(userId);
 	}
 
-	public List<Course> retrieveCourses(int studentId) {
-		User student = retrieveStudent(studentId);
-
-		return student == null ? null : student.getCourses();
+	public Set<Course> retrieveCourses(int studentId) {
+		return null;
+//		User student = retrieveStudent(studentId);
+//
+//		return student == null ? null : student.getCourses();
 
 	}
 
@@ -42,11 +44,11 @@ public class StudentService {
 			return null;
 		}
 
-		for (Course course : student.getCourses()) {
-			if (course.getCourseId()==courseId) {
-				return course;
-			}
-		}
+//		for (Course course : student.getCourses()) {
+//			if (course.getCourseId()==courseId) {
+//				return course;
+//			}
+//		}
 
 		return null;
 	}
@@ -58,7 +60,7 @@ public class StudentService {
 			return null;
 		}
 		course.setCourseId(course.getCourseId());
-		student.getCourses().add(course);
+		//student.getCourses().add(course);
 
 		return course;
 	}

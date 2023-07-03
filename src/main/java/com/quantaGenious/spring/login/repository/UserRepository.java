@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.quantaGenious.spring.login.models.Tutor;
 
 @Repository
-public interface UserRepository extends JpaRepository<Tutor, Long> {
+public interface UserRepository extends JpaRepository<Tutor, Integer> {
 	
   Optional<Tutor> findByUsername(String username);
 

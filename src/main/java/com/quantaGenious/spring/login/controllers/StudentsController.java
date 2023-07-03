@@ -2,6 +2,7 @@ package com.quantaGenious.spring.login.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class StudentsController {
 	private StudentService studentService;
 
 	@GetMapping("/students/{studentId}/courses")
-	public List<Course> retrieveCoursesForStudent(@PathVariable int studentId) {
+	public Set<Course> retrieveCoursesForStudent(@PathVariable int studentId) {
 		return studentService.retrieveCourses(studentId);
 	}
 
