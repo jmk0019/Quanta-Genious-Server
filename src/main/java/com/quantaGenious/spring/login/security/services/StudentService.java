@@ -30,10 +30,9 @@ public class StudentService {
 	}
 
 	public Set<Course> retrieveCourses(int studentId) {
-		return null;
-//		User student = retrieveStudent(studentId);
-//
-//		return student == null ? null : student.getCourses();
+		User student = retrieveStudent(studentId);
+
+		return student == null ? null : student.getCourses();
 
 	}
 
@@ -44,11 +43,11 @@ public class StudentService {
 			return null;
 		}
 
-//		for (Course course : student.getCourses()) {
-//			if (course.getCourseId()==courseId) {
-//				return course;
-//			}
-//		}
+		for (Course course : student.getCourses()) {
+			if (course.getCourseId()==courseId) {
+				return course;
+			}
+		}
 
 		return null;
 	}
@@ -60,7 +59,7 @@ public class StudentService {
 			return null;
 		}
 		course.setCourseId(course.getCourseId());
-		//student.getCourses().add(course);
+		student.getCourses().add(course);
 
 		return course;
 	}

@@ -25,6 +25,7 @@ public class User {
 	
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private int userId;
 
   @NotBlank
@@ -49,6 +50,12 @@ public class User {
   @Column(name = "last_modified_date")
   @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
   private Date lastModifiedDate;
+  
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_courses", 
+             joinColumns = @JoinColumn(name = "user_id"),
+             inverseJoinColumns = @JoinColumn(name = "course_id"))
+  private Set<Course> courses = new HashSet<>();
 
   
 
@@ -115,6 +122,12 @@ public void setUserId(int userId) {
 	this.userId = userId;
 }
 
+public Set<Course> getCourses() {
+	return courses;
+}
 
+public void setCourses(Set<Course> courses) {
+	this.courses = courses;
+}
   
 }
