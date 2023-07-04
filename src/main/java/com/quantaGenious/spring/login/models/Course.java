@@ -30,7 +30,9 @@ public class Course {
 	
 	@Column(name = "description")
 	private String description;
-
+	
+	private List<User> users;
+	
 	
 	public Course() {
 
@@ -67,6 +69,13 @@ public class Course {
 		this.description = description;
 	}
 
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 		
 
 }
