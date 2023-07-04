@@ -13,9 +13,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  
 public class SignupRequest {
 	
-	@NotBlank
-	@Size(min = 1, max = 20)
-	private int userId;
 	
     @NotBlank
     @Size(min = 3, max = 20)
@@ -89,13 +86,6 @@ public class SignupRequest {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 	
     

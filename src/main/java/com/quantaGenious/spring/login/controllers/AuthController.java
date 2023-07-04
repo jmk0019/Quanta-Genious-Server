@@ -89,12 +89,10 @@ public class AuthController {
     }
 
     // Create new user's account
-    Tutor user = new Tutor(signUpRequest.getUserId(),
+    Tutor user = new Tutor(
     		              signUpRequest.getUsername(),
-    		
                          signUpRequest.getEmail(),
                          encoder.encode(signUpRequest.getPassword()));
-
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
@@ -126,8 +124,6 @@ public class AuthController {
     }
 
     user.setRoles(roles);
-    user.setCreatedDate(new Date(22-06-2023));
-    user.setLastModifiedDate(signUpRequest.getLastModifiedDate());
     userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

@@ -14,7 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "tutors",
+@Table(name = "tutor",
        uniqueConstraints = {
            @UniqueConstraint(columnNames = "username"),
            @UniqueConstraint(columnNames = "email")
@@ -56,9 +56,8 @@ public class Tutor {
   public Tutor() {
   }
 
-  public Tutor(int tutorId,String username, String email, String password) {
+  public Tutor(String username, String email, String password) {
 	  super();
-	  this.tutorId=tutorId;
     this.username = username;
     this.email = email;
     this.password = password;

@@ -17,11 +17,11 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "course")
+@Table(name = "Courses")
 public class Course {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int courseId;
 
@@ -67,6 +67,13 @@ public class Course {
 		this.description = description;
 	}
 
-		
 
+	@Override
+	public String toString() {
+		return "Course{" +
+				"courseId=" + courseId +
+				", courseName='" + courseName + '\'' +
+				", description='" + description + '\'' +
+				'}';
+	}
 }

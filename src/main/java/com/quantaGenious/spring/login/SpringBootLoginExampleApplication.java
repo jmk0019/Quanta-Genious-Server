@@ -12,6 +12,7 @@ public class SpringBootLoginExampleApplication {
 	
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SpringBootLoginExampleApplication.class, args);
 	}
 	
