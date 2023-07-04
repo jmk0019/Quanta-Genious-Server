@@ -56,9 +56,8 @@ public class Tutor {
   public Tutor() {
   }
 
-  public Tutor(int tutorId,String username, String email, String password) {
+  public Tutor(String username, String email, String password) {
 	  super();
-	  this.tutorId=tutorId;
     this.username = username;
     this.email = email;
     this.password = password;
