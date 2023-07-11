@@ -4,15 +4,19 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quantaGenious.spring.login.models.Course;
+import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.models.User;
+import com.quantaGenious.spring.login.repository.CourseRepository;
 import com.quantaGenious.spring.login.repository.FileRepository;
 import com.quantaGenious.spring.login.repository.UserRepo;
+import com.quantaGenious.spring.login.repository.UserRepository;
 
 
 @Service
@@ -20,6 +24,13 @@ public class StudentService {
 	
 	@Autowired
     private UserRepo userRepo;
+	
+	@Autowired
+	private UserRepository tutorRepo;
+	
+	@Autowired
+	private CourseRepository courseRepo;
+	
 
 	public List<User> retrieveAllUsers() {
 		return userRepo.findAll();
@@ -51,17 +62,29 @@ public class StudentService {
 
 		return null;
 	}
+	
+	
+	
 
-	public Course addCourse(int studentId, Course course) {
-		User student = retrieveStudent(studentId);
+	public Course addCourse(int tutorId, Course course) {
+		Optional<Tutor> tutor = tutorRepo.findById(tutorId);
 
-		if (student == null) {
+		if (tutor == null) {
 			return null;
 		}
-		course.setCourseId(course.getCourseId());
-		student.getCourses().add(course);
-
-		return course;
+		
+		Course CourseData =courseRepo.save(course);
+		
+		if(CourseData!=null) {
+			
+			for (User user : course.getUsers()) {
+				user.setCourses((Set<Course>) CourseData);
+				userRepo.save(user);	
+			}
+			
+		}
+		
+		return CourseData;
 	}
 
 }
