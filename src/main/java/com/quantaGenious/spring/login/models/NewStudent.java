@@ -4,10 +4,10 @@ package com.quantaGenious.spring.login.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Student")
+@Table(name="students")
 public class NewStudent {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 45)
     private int id;
     @Column(name = "sname",length = 255)
