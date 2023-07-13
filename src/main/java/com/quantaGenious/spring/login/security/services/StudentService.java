@@ -29,7 +29,8 @@ public class StudentService {
 	@Autowired
 	private CourseRepository courseRepo;
 	
-	 BCryptPasswordEncoder bCryptPasswordEncoder = null;
+	  @Autowired
+	  PasswordEncoder encoder;
 	
 
 	public List<User> retrieveAllUsers() {
@@ -77,10 +78,10 @@ public class StudentService {
 		
 		if(CourseData!=null) {
 			
-			for (User user : course.getUsers()) {
-				user.setCourses((Set<Course>) CourseData);
-				userRepo.save(user);	
-			}
+//			for (User user : course.getUsers()) {
+//				user.setCourses((Set<Course>) CourseData);
+//				userRepo.save(user);	
+//			}
 			
 		}
 		
@@ -95,7 +96,7 @@ public class StudentService {
 		boolean checkPassword=isTruePassword(tutorId,password);
 		
 		if(checkPassword) {
-			tutorRepo.changeUserPassword(bCryptPasswordEncoder.encode(newPassword));
+			tutorRepo.changeUserPassword(encoder.encode(newPassword));
 			return 1;
 		}
 		
@@ -107,7 +108,7 @@ public class StudentService {
      Optional<Tutor> tutor =tutorRepo.findById(tutorId);
      
      if(tutor!=null) {
-    	 boolean check=bCryptPasswordEncoder.matches(password,tutor.get().getPassword());
+    	 boolean check=encoder.matches(encoder.encode(password),tutor.get().getPassword());
     	 return check;
     	 
      }else {
