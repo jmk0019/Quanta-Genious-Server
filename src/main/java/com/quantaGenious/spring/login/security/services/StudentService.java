@@ -1,20 +1,18 @@
 package com.quantaGenious.spring.login.security.services;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.quantaGenious.spring.login.models.Course;
 import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.models.User;
 import com.quantaGenious.spring.login.repository.CourseRepository;
-import com.quantaGenious.spring.login.repository.FileRepository;
 import com.quantaGenious.spring.login.repository.UserRepo;
 import com.quantaGenious.spring.login.repository.UserRepository;
 
@@ -30,6 +28,8 @@ public class StudentService {
 	
 	@Autowired
 	private CourseRepository courseRepo;
+	
+	 BCryptPasswordEncoder bCryptPasswordEncoder = null;
 	
 
 	public List<User> retrieveAllUsers() {
@@ -85,6 +85,35 @@ public class StudentService {
 		}
 		
 		return CourseData;
+	}
+
+	public int changeUserPassword(Tutor tutor, String newPassword) {
+		
+		int tutorId=tutor.getTutorId();
+		String password=tutor.getPassword();
+		
+		boolean checkPassword=isTruePassword(tutorId,password);
+		
+		if(checkPassword) {
+			tutorRepo.changeUserPassword(bCryptPasswordEncoder.encode(newPassword));
+			return 1;
+		}
+		
+		return 0;
+	}
+
+ 	private boolean isTruePassword(int tutorId, String password) {
+
+     Optional<Tutor> tutor =tutorRepo.findById(tutorId);
+     
+     if(tutor!=null) {
+    	 boolean check=bCryptPasswordEncoder.matches(password,tutor.get().getPassword());
+    	 return check;
+    	 
+     }else {
+		
+		return false;
+     }
 	}
 
 }

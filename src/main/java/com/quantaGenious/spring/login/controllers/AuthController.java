@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,12 +28,14 @@ import com.quantaGenious.spring.login.models.ERole;
 import com.quantaGenious.spring.login.models.Role;
 import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.payload.request.LoginRequest;
+import com.quantaGenious.spring.login.payload.request.RequestChangePassword;
 import com.quantaGenious.spring.login.payload.request.SignupRequest;
 import com.quantaGenious.spring.login.payload.response.MessageResponse;
 import com.quantaGenious.spring.login.payload.response.UserInfoResponse;
 import com.quantaGenious.spring.login.repository.RoleRepository;
 import com.quantaGenious.spring.login.repository.UserRepository;
 import com.quantaGenious.spring.login.security.jwt.JwtUtils;
+import com.quantaGenious.spring.login.security.services.StudentService;
 import com.quantaGenious.spring.login.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -45,6 +48,9 @@ public class AuthController {
 
   @Autowired
   UserRepository userRepository;
+  
+  @Autowired
+  StudentService userService;
 
   @Autowired
   RoleRepository roleRepository;
@@ -135,4 +141,26 @@ public class AuthController {
     return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
         .body(new MessageResponse("You've been signed out!"));
   }
+  
+  @PostMapping("/changePassword")
+  public ResponseEntity<String> changePassword(@RequestBody RequestChangePassword request){
+	  
+	  Tutor tutor = new Tutor();
+	  
+	  tutor.setTutorId(request.getTutorId());
+	  tutor.setPassword(request.getOldPassword());
+	  
+	  int check = userService.changeUserPassword(tutor,request.getNewPassword());
+	  
+	  if(check ==1) {
+		  return ResponseEntity.status(HttpStatus.OK).body("Password Changed Successfully.");
+	  }
+	  
+	  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please Give Correct Details.");
+	  
+	  
+	  
+	  
+  }
+  
 }
