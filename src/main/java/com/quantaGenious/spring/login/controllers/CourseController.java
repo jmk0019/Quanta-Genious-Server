@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/auth")
 public class CourseController {
     @Autowired
-    private  final CourseService courseService;
+    private  CourseService courseService;
 
     @Autowired
     public CourseController(CourseService courseService) {

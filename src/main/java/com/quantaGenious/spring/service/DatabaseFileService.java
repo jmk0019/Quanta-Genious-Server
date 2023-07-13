@@ -34,7 +34,7 @@ public class DatabaseFileService {
             return dbFileRepository.save(dbFile);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
-        }
+        } 
     }
 
     public File getFile(Long fileId) {

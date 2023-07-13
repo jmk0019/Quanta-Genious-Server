@@ -30,7 +30,7 @@ public class Course {
 	
 	@Column(name = "description")
 	private String description;
-
+	
 	
 	public Course() {
 

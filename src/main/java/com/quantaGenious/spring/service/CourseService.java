@@ -1,7 +1,11 @@
 package com.quantaGenious.spring.service;
 
 import com.quantaGenious.spring.login.models.Course;
+import com.quantaGenious.spring.login.models.Lessons;
+import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.repository.CourseRepository;
+import com.quantaGenious.spring.login.repository.LessonsRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +14,13 @@ import java.util.Optional;
 
 @Service
 public class CourseService {
+	@Autowired
     private CourseRepository courseRepository;
-    @Autowired
+	
+	@Autowired
+	private LessonsRepository lessonsRepo;
+	
+	
     public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
@@ -31,7 +40,28 @@ public class CourseService {
     public void deleteEmployee(Integer id) {
         courseRepository.deleteById(id);
     }
+
+	public Lessons addLessonsToCourse(Lessons lessons) {
+		
+		Optional<Course> courseData=null;
+		
+		for(Course course: lessons.getCourses()) {
+		   courseData = getCourseById(((List<Course>) course).get(0).getCourseId());
+		}
+
+		if (courseData == null) {
+			return null;
+		}else {
+			
+			return lessonsRepo.save(lessons);
+			
+		}
+		
+		
+	}
+	
 }
+
 
 
 

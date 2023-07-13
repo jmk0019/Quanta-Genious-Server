@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "uploadfiles")
-public class File {
+public class  File {
 	
 	   @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
