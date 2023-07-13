@@ -43,22 +43,9 @@ public class CourseService {
 
 	public Lessons addLessonsToCourse(Lessons lessons) {
 		
-		Optional<Course> courseData=null;
-		
-		for(Course course: lessons.getCourses()) {
-		   courseData = getCourseById(((List<Course>) course).get(0).getCourseId());
-		}
-
-		if (courseData == null) {
-			return null;
-		}else {
-			
 			return lessonsRepo.save(lessons);
 			
 		}
-		
-		
-	}
 	
 }
 
