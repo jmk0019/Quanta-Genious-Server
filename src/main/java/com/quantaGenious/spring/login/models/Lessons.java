@@ -1,6 +1,7 @@
 package com.quantaGenious.spring.login.models;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -27,6 +28,10 @@ public class Lessons {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private int lessonId;
+  
+  @NotBlank
+  @Size(max = 20)
+  private String sectionName;
 
   @NotBlank
   @Size(max = 20)
@@ -57,13 +62,6 @@ public void setLessonId(int lessonId) {
 	this.lessonId = lessonId;
 }
 
-public String getLessonName() {
-	return lessonName;
-}
-
-public void setLessonName(String lessonName) {
-	this.lessonName = lessonName;
-}
 
 public Date getCreatedDate() {
 	return createdDate;
@@ -89,12 +87,28 @@ public void setCourses(Set<Course> courses) {
 	this.courses = courses;
 }
 
-@Override
-public String toString() {
-	return "Lessons [lessonId=" + lessonId + ", lessonName=" + lessonName + ", createdDate=" + createdDate
-			+ ", lastModifiedDate=" + lastModifiedDate + ", courses=" + courses + "]";
+
+
+public String getSectionName() {
+	return sectionName;
 }
 
+public void setSectionName(String sectionName) {
+	this.sectionName = sectionName;
+}
 
+public String getLessonName() {
+	return lessonName;
+}
+
+public void setLessonName(String lessonName) {
+	this.lessonName = lessonName;
+}
+
+@Override
+public String toString() {
+	return "Lessons [lessonId=" + lessonId + ", sectionName=" + sectionName + ", lessonName=" + lessonName
+			+ ", createdDate=" + createdDate + ", lastModifiedDate=" + lastModifiedDate + ", courses=" + courses + "]";
+}
 
 }

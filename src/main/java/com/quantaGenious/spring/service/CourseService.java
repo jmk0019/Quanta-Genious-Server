@@ -44,7 +44,6 @@ public class CourseService {
 	public Lessons addLessonsToCourse(Lessons lessons) {
 		
 			return lessonsRepo.save(lessons);
-			
 		}
 	
 }
