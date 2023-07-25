@@ -40,26 +40,18 @@ public class DatabaseFileService {
     }
 
 
-
-//    public List<File> getAllFiles() {
-//
-//        return dbFileRepository.getAllFiles();
-//    }
     public File getFile(Long fileId) {
         return dbFileRepository.getFileById(fileId);
     }
-
-
+    
+    public List<File> getAllFiles(List<Long> fileIds) {
+        return dbFileRepository.getAllFilesByIdIn(fileIds);
+    }
 
     public List<File> getAllVideoFiles() {
         return dbFileRepository.findAll();
     }
 
 
-
-
-//   public File getAllFiles(){
-//        return dbFileRepository.getAllFiles();
-//   }
 
 }

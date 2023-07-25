@@ -14,7 +14,9 @@ public interface FileRepository extends JpaRepository<File, Long> {
 
 
 	File getFileById(Long id);
+	
 	@Override
 	List<File> findAll();
-
+	
+	List<File> getAllFilesByIdIn(List<Long> id);
 }

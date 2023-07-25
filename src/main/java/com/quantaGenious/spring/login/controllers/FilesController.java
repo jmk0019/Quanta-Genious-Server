@@ -43,10 +43,21 @@ public class FilesController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + databaseFile.getFileName() + "\"")
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
+    
     @GetMapping("/downloadMultipleFiles")
     public ResponseEntity<List<File>> getAllFiles() {
         List<File> files = fileStorageService.getAllVideoFiles();
         return ResponseEntity.status(HttpStatus.OK).body(files);
+    }
+    
+    @GetMapping("/downloadFiles/{fileId:.+}")
+    public void downloadFiles(@PathVariable List<Long> fileIds, HttpServletRequest request) {
+        // Load file as Resource
+        List<File> databaseFile = fileStorageService.getAllFiles(fileIds);
+        
+        for(File fileData:databaseFile) {
+        	downloadFile(fileData.getId(), request);	
+        }
     }
 
 
