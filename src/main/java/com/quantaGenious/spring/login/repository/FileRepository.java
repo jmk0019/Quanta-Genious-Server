@@ -5,9 +5,16 @@ import org.springframework.stereotype.Repository;
 
 import com.quantaGenious.spring.login.models.File;
 
+import java.util.List;
+
+
 
 @Repository
-public interface FileRepository extends JpaRepository<File, String> {
-	
+public interface FileRepository extends JpaRepository<File, Long> {
+
+
 	File getFileById(Long id);
+	@Override
+	List<File> findAll();
+
 }

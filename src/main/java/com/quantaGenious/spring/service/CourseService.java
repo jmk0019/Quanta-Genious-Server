@@ -1,9 +1,11 @@
 package com.quantaGenious.spring.service;
 
 import com.quantaGenious.spring.login.models.Course;
+import com.quantaGenious.spring.login.models.File;
 import com.quantaGenious.spring.login.models.Lessons;
 import com.quantaGenious.spring.login.models.Tutor;
 import com.quantaGenious.spring.login.repository.CourseRepository;
+import com.quantaGenious.spring.login.repository.FileRepository;
 import com.quantaGenious.spring.login.repository.LessonsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import java.util.Optional;
 public class CourseService {
 	@Autowired
     private CourseRepository courseRepository;
-	
+	private FileRepository dbFileRepository;
 	@Autowired
 	private LessonsRepository lessonsRepo;
 	
@@ -47,7 +49,6 @@ public class CourseService {
 		}
 	
 }
-
 
 
 

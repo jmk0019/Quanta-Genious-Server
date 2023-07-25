@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "uploadfiles")
+@Table(name = "files")
 public class  File {
 	
 	   @Id
